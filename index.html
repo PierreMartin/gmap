@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="https://bootswatch.com/darkly/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .angular-google-map-container { height: 400px; }
+        .testClass { background: black; color: white; }
+    </style>
+</head>
+<body>
+
+
+    <div class="container">
+        <div class="row" ng-controller="mainCtrl">
+
+            <div class="col-sm-3 nav-pointers">
+                <ul ng-repeat="marker in datas">
+                    <li>
+                        <a href="#" ng-click="openInfoWindow($event, marker)">{{ marker.name }}</a>
+                    </li>
+                    <hr>
+                </ul>
+            </div>
+
+            <div class="col-sm-8">
+                <div id="map"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src='node_modules/angular-google-maps/node_modules/lodash/lodash.js'></script>
+    <script src='node_modules/angular-google-maps/node_modules/angular/angular.min.js'></script>
+    <script src='node_modules/angular-google-maps/node_modules/angular-simple-logger/dist/angular-simple-logger.min.js'></script>
+    <script src='node_modules/angular-google-maps/dist/angular-google-maps.min.js'></script>
+
+    <script src='http://maps.googleapis.com/maps/api/js?sensor=false'></script>
+
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+</body>
+</html>

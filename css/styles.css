@@ -1,0 +1,20 @@
+.nav-pointers {
+    height: 400px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+#map {
+    height:420px;
+    width:600px;
+    color: #181818;
+}
+.infoWindowContent {
+    font-size:  14px !important;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+}
+h2 {
+    margin-bottom:0;
+    margin-top: 0;
+}
