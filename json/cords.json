@@ -3,7 +3,7 @@
         "age": 0, 
         "id": "test-1",
         "imageUrl": "img/phones/motorola-xoom-with-wi-fi.0.jpg", 
-        "name": "Motorola XOOM\u2122 with Wi-Fi", 
+        "title": "Motorola XOOM\u2122 with Wi-Fi",
         "snippet": "The Next, Next Generation\r\n\r\nExperience the future with Motorola XOOM with Wi-Fi, the world's first tablet powered by Android 3.0 (Honeycomb).",
         "latitude" : 42.00987067274794,
         "longitude" : -79.0848478174097
@@ -12,7 +12,7 @@
         "age": 1, 
         "id": "test-2",
         "imageUrl": "img/phones/motorola-xoom.0.jpg", 
-        "name": "MOTOROLA XOOM\u2122", 
+        "title": "MOTOROLA XOOM\u2122",
         "snippet": "The Next, Next Generation\n\nExperience the future with MOTOROLA XOOM, the world's first tablet powered by Android 3.0 (Honeycomb).",
         "latitude": 32.00987067274794,
         "longitude": -90.0848478174097
@@ -21,7 +21,7 @@
         "age": 2,
         "id": "test-3",
         "imageUrl": "img/phones/motorola-atrix-4g.0.jpg",
-        "name": "MOTOROLA ATRIX\u2122 4G",
+        "title": "MOTOROLA ATRIX\u2122 4G",
         "snippet": "MOTOROLA ATRIX 4G the world's most powerful smartphone.",
         "latitude": 29.50722698782058,
         "longitude": -91.0848478174097

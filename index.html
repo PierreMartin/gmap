@@ -18,10 +18,11 @@
         <div class="row" ng-controller="mainCtrl">
 
             <div class="col-sm-3 nav-pointers">
-                <ul ng-repeat="marker in datas">
-                    <li>
-                        <a href="#" ng-click="openInfoWindow($event, marker)">{{ marker.name }}</a>
-                    </li>
+                <ul ng-repeat="marker in markers">
+                    <a href="#" ng-mouseover="openInfoWindow($event, marker)">
+                        <li>{{ marker.title_raw }}</li>
+                        <li>{{ marker.content }}</li>
+                    </a>
                     <hr>
                 </ul>
             </div>

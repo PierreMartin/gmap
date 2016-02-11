@@ -1,6 +1,6 @@
 'use strict';
 
-myApp.controller('mainCtrl', ['$scope', '$http', function($scope, $http) {
+myApp.controller('mainCtrl', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
 
     // MAP :
     var mapOptions = {
@@ -13,46 +13,65 @@ myApp.controller('mainCtrl', ['$scope', '$http', function($scope, $http) {
 
     // MARKERS :
     $http.get('json/cords.json').success(function(data) {
-        $scope.datas  = data;
 
+        // JSON ('title', 'snippet')
+        var locas = data;
+        angular.forEach(data, function(value, key) { console.log(value.latitude + ' | ' + value.longitude); });
+
+
+        // INIT
         $scope.markers = [];
-
-        /*angular.forEach(data, function(value, key) {
-            console.log(value.latitude + ' | ' + value.longitude);
-        });*/
-
         var infoWindow = new google.maps.InfoWindow();
 
 
+        // MARKERS
         var createMarker = function (info) {
             var marker = new google.maps.Marker({
-                map: $scope.map,
-                position: new google.maps.LatLng(info.latitude, info.longitude),
-                title: info.id
+                map:        $scope.map,
+                icon:       'images/icon.png',
+                animation:  google.maps.Animation.DROP,
+                position:   new google.maps.LatLng(info.latitude, info.longitude),
+                title:      '<h2>' + info.title + '</h2>',
+                title_raw:   info.title,
+                content:     info.snippet
             });
 
-            marker.content = '<div class="infoWindowContent">' + info.name + '</div>';
+            // ANIMATION
+            function stopAnimAll() {
+                $scope.markers.forEach(function (a, b) {
+                    a.setAnimation(null);
+                });
+            }
 
+            function toggleBounce() {
+                stopAnimAll();
+                if (marker.getAnimation() == null) {
+                    marker.setAnimation(google.maps.Animation.BOUNCE);
+                }
+            }
+
+            marker.addListener('click', toggleBounce);
+            google.maps.event.addListener($scope.map, 'click', stopAnimAll);
+
+
+            // CONTENTS + TITLES
             google.maps.event.addListener(marker, 'click', function(){
-                infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content);
+                infoWindow.setContent(marker.title + marker.content);
                 infoWindow.open($scope.map, marker);
             });
 
             $scope.markers.push(marker);
-
-            //console.log('titles   : ' + marker.title);
-            //console.log('contents : ' + marker.content);
         };
 
-
-        for (var i = 0; i < data.length; i++){
-            createMarker(data[i]);
+        for (var i = 0; i < locas.length; i++) {
+            createMarker(locas[i]);
         }
 
-        $scope.openInfoWindow = function(e, selectedMarker){
+        $scope.openInfoWindow = function(e, selectedMarker) {
             e.preventDefault();
             google.maps.event.trigger(selectedMarker, 'click');
         }
+
     });
 
 
