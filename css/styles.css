@@ -1,20 +1,78 @@
-.nav-pointers {
-    height: 400px;
+body {
+    padding-top: 60px;
+    font-size: 16px;
+    line-height: 1.6em;
+    font-family: FuturaStd, sans-serif;
+    font-weight: normal;
+    background-color: #3D4351;
+}
+
+a:link, a:visited   { text-decoration: none; color: white; }
+a:hover, a:focus    { text-decoration: none; }
+a:active            { text-decoration: none; }
+
+h1 { line-height: 1.2em; }
+h2 { font-size: 20px; margin: 0 0 0 0; font-family: FuturaStdBold, sans-serif; line-height: 1.4em; }
+h3 { font-size: 30px; line-height: 1.5em; }
+
+* { box-sizing: border-box; }
+
+/* ###################### NAV ######################*/
+.navbar-default { background-color: #191E29; }
+
+
+/* ###################### NAV ######################*/
+.mapContainer {
+    position: relative;
+}
+
+.mapContainer #map {
+    position: absolute;
+    height: 500px;
+    width: 100%;
+    color: #181818;
+}
+
+
+/* ###################### MARKERS ######################*/
+.mapContainer .markers {
+    position: absolute;
+    z-index: 9999;
+
+    height: 500px;
+    width: 250px;
     overflow: hidden;
     overflow-y: scroll;
 }
 
-#map {
-    height:420px;
-    width:600px;
-    color: #181818;
+.mapContainer .markers ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
+
+.mapContainer .markers ul li {
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-bottom: white 1px solid;
+    -webkit-transition: 0.5s;
+            transition: 0.5s;
+}
+
+.mapContainer .markers ul li:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.markerTitle    { font-size: 18px; font-weight: bold; }
+.markerDescib   { font-size: 14px; font-weight: lighter; color: #EAEAEA; line-height: 18px; }
+
+
+/* ###################### TOOLTIPS ######################*/
 .infoWindowContent {
     font-size:  14px !important;
     border-top: 1px solid #ccc;
     padding-top: 10px;
 }
-h2 {
-    margin-bottom:0;
-    margin-top: 0;
-}
+
+
+.angular-google-map-container { height: 400px; }

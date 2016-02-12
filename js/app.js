@@ -1,22 +1,33 @@
 'use strict';
 
-var myApp = angular.module('myApp', ['uiGmapgoogle-maps']);
+var myApp = angular.module('myApp', [
+    'ngRoute',
+    'mainControllers',
+    'uiGmapgoogle-maps'
+]);
 
-/*
-myApp.config(['uiGmapGoogleMapApiProvider', function(GoogleMapApiProviders) {
-    GoogleMapApiProviders.configure({
-        china: true
-    });
-}]);
-*/
 
-myApp.config(function(uiGmapGoogleMapApiProvider) {
+myApp.config(['$routeProvider', 'uiGmapGoogleMapApiProvider', function($routeProvider, uiGmapGoogleMapApiProvider) {
+
     uiGmapGoogleMapApiProvider.configure({
         key: '',
         v: '3',
         libraries: 'weather,geometry,visualization'
     });
-});
+
+    $routeProvider.
+        when('/', {
+            templateUrl: 'partials/home.html',
+            controller: 'homeCtrl'
+        }).
+        when('/map', {
+            templateUrl: 'partials/map.html',
+            controller: 'mapCtrl'
+        }).
+        otherwise({
+            redirectTo: '/'
+        });
+}]);
 
 
 

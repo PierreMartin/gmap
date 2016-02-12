@@ -1,0 +1,13 @@
+<div class="mapContainer">
+    <div id="map" class="col-sm-12"></div>
+    <div class="markers">
+        <ul>
+            <li ng-repeat="marker in markers">
+                <a href="#" ng-mouseover="openInfoWindow($event, marker)">
+                    <div class="markerTitle">{{ marker.title_raw }}</div>
+                    <div class="markerDescib">{{ marker.content }}</div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

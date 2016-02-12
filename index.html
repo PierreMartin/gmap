@@ -6,32 +6,29 @@
 
     <link rel="stylesheet" href="https://bootswatch.com/darkly/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
-    <style>
-        .angular-google-map-container { height: 400px; }
-        .testClass { background: black; color: white; }
-    </style>
 </head>
 <body>
 
-
-    <div class="container">
-        <div class="row" ng-controller="mainCtrl">
-
-            <div class="col-sm-3 nav-pointers">
-                <ul ng-repeat="marker in markers">
-                    <a href="#" ng-mouseover="openInfoWindow($event, marker)">
-                        <li>{{ marker.title_raw }}</li>
-                        <li>{{ marker.content }}</li>
-                    </a>
-                    <hr>
-                </ul>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="/" class="navbar-brand">Gmap</a>
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
             </div>
-
-            <div class="col-sm-8">
-                <div id="map"></div>
+            <div class="navbar-collapse collapse" id="navbar-main">
+                <ul class="nav navbar-nav">
+                    <li><a href="/#/map">Voir la map</a></li>
+                </ul>
             </div>
         </div>
     </div>
+
+
+    <div ng-view></div>
 
 
 
@@ -41,6 +38,8 @@
     <script src='node_modules/angular-google-maps/dist/angular-google-maps.min.js'></script>
 
     <script src='http://maps.googleapis.com/maps/api/js?sensor=false'></script>
+
+    <script src="node_modules/angular-route/angular-route.js"></script>
 
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
