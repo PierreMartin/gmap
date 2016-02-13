@@ -159,7 +159,10 @@ mainControllers.controller('mapCtrl', ['$scope', '$http', '$timeout', function($
     var mapOptions = {
         zoom: 6,
         center: new google.maps.LatLng(46.80, 1.70),
-        //mapTypeId: google.maps.MapTypeId.TERRAIN,
+        mapTypeId: google.maps.MapTypeId.TERRAIN,
+        disableDefaultUI: true,
+        scaleControl: true,
+        zoomControl: true,
         mapTypeControlOptions: {
             mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
         }
