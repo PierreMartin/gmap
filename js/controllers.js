@@ -3,17 +3,14 @@
 var mainControllers = angular.module('mainControllers', []);
 
 
-
 mainControllers.controller('homeCtrl', ['$scope', '$http', function($scope, $http) {
     //...
 }]);
 
 
-
-mainControllers.controller('mapCtrl', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
+mainControllers.controller('mapCtrl', ['$scope', '$http', '$timeout', '$filter', function($scope, $http, $timeout, $filter) {
 
     // STYLE MAP :
-
     var styles = [
         {
             "elementType": "geometry",
@@ -173,19 +170,30 @@ mainControllers.controller('mapCtrl', ['$scope', '$http', '$timeout', function($
     $scope.map.mapTypes.set('map_style', styledMap);
     $scope.map.setMapTypeId('map_style');
 
-
-
     // MARKERS :
-    $http.get('json/cords.json').success(function(data) {
+    $http.get('json/racesData.json').success(function(data) {
 
-        // JSON ('title', 'snippet')
+        // JSON
         var locas = data;
-        angular.forEach(data, function(value, key) { console.log(value.latitude + ' | ' + value.longitude); });
 
+        // DEBUG
+        angular.forEach(data, function(value) {
+            console.log(value.routes[0].locations[0].coordinates.longitude);
+            angular.forEach(value.routes, function(value2) {
+                if (typeof(value2.cost) != "undefined") {
+                    console.log('prix : '+ value2.cost.price_value);
+                }
+            });
+            console.log('------------------- fin de la course ------------------');
+        });
 
         // INIT
         $scope.markers = [];
         var infoWindow = new google.maps.InfoWindow();
+
+        google.maps.event.addListener(infoWindow, 'domready', function () {
+            $('.gm-style-iw').parent().addClass('custom-iw');
+        });
 
         // MARKERS
         var createMarker = function (info) {
@@ -193,10 +201,12 @@ mainControllers.controller('mapCtrl', ['$scope', '$http', '$timeout', function($
                 map:        $scope.map,
                 icon:       'images/icon.png',
                 animation:  google.maps.Animation.DROP,
-                position:   new google.maps.LatLng(info.latitude, info.longitude),
+                position:   new google.maps.LatLng(info.routes[0].locations[0].coordinates.latitude, info.routes[0].locations[0].coordinates.longitude),
                 title:      '<h2>' + info.title + '</h2>',
                 title_raw:   info.title,
-                content:     info.snippet
+                date:        $filter('date')(info.time, "dd/MM/yyyy"),
+                city:        info.routes[0].locations[0].address.city,
+                routes:      info.routes
             });
 
             // ANIMATION
@@ -205,7 +215,6 @@ mainControllers.controller('mapCtrl', ['$scope', '$http', '$timeout', function($
                     a.setAnimation(null);
                 });
             }
-
 
             function toggleBounce() {
                 $timeout(function() {
@@ -225,7 +234,7 @@ mainControllers.controller('mapCtrl', ['$scope', '$http', '$timeout', function($
 
             // CONTENTS + TITLES
             google.maps.event.addListener(marker, 'click', function(){
-                infoWindow.setContent(marker.title);
+                infoWindow.setContent(marker.title + marker.date + '<br>' + marker.city);
                 infoWindow.open($scope.map, marker);
             });
 
@@ -242,6 +251,5 @@ mainControllers.controller('mapCtrl', ['$scope', '$http', '$timeout', function($
         }
 
     });
-
 
 }]);

@@ -1,8 +1,3 @@
-/* Relevant data for races are :
-	- Title
-	- Date
-	- Routes (locations, duraction, distance, cost)
-*/
 [
   {
     "participants_count": 0,

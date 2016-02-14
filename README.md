@@ -1,6 +1,6 @@
-# test map
+# Jogg.in
 
-run server :
+    - sudo npm install
+    - sudo npm start
 
-    sudo npm start
-    
+go to : http://localhost:8000/
